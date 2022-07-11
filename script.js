@@ -30,15 +30,19 @@ fetch("https://jsonplaceholder.typicode.com/users")
       <h3>Nessun utente rientra in questi requisiti
       di età</h3>`;
 
+      const modalCloser = `<span class="closeModal">X</span>`;
+
+      const modalOpener = (modalWindow.style.display = "block");
+
       if (event.target.closest(".primaFascia")) {
-        modalWindow.style.display = "block";
-        modalWindow.innerHTML = `<span class="closeModal">X</span>
-        <h3>Utenti con età compresa tra i 18 e i 35 anni</h3>`;
+        modalOpener;
+        modalWindow.innerHTML = `${modalCloser}<h3>Utenti con età compresa tra i 18 e i 35 anni</h3>`;
 
         if (primaFascia.length > 0) {
           primaFascia.map((_, index, array) => {
             modalWindow.innerHTML += `
-        <div>Nome: ${array[index].name}<br> Età: ${array[index].age},<br> Numero di telefono: ${array[index].phone} <br><br></div>
+        <div>
+        Nome: ${array[index].name}<br> Età: ${array[index].age},<br> Numero di telefono: ${array[index].phone} <br><br></div>
         `;
           });
         } else {
@@ -46,14 +50,14 @@ fetch("https://jsonplaceholder.typicode.com/users")
         }
       }
       if (event.target.closest(".secondaFascia")) {
-        modalWindow.style.display = "block";
-        modalWindow.innerHTML = `<span class="closeModal">X</span>
-        <h3>Utenti con età compresa tra i 36 e i 64 anni</h3>`;
+        modalOpener;
+        modalWindow.innerHTML = `${modalCloser}<h3>Utenti con età compresa tra i 36 e i 64 anni</h3>`;
 
         if (secondaFascia.length > 0) {
           secondaFascia.map((_, index, array) => {
             modalWindow.innerHTML += `
-        <div>Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
+        <div>
+        Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
         `;
           });
         } else {
@@ -61,15 +65,15 @@ fetch("https://jsonplaceholder.typicode.com/users")
         }
       }
       if (event.target.closest(".terzaFascia")) {
-        modalWindow.style.display = "block";
-        modalWindow.innerHTML = `<span class="closeModal">X</span>
-        <h3>Utenti con età oltre i 64 anni</h3>`;
+        modalOpener;
+        modalWindow.innerHTML = `${modalCloser}<h3>Utenti con età oltre i 64 anni</h3>`;
 
         if (terzaFascia.length > 0) {
-          terzaFascia.map((item, index, array) => {
+          terzaFascia.map((_, index, array) => {
             modalWindow.innerHTML += `
-        <div>Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
-        `;
+            <div>
+            Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
+            `;
           });
         } else {
           modalWindow.innerHTML = noUserFindMSG;
