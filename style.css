@@ -23,7 +23,9 @@ h1 {
   gap: 40px;
 }
 
-.fasceBonus .fasceBtn {
+.primaFascia,
+.secondaFascia,
+.terzaFascia {
   width: 70vw;
   height: 20vh;
   text-align: center;
