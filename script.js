@@ -1,0 +1,103 @@
+function ageGenerator(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const fasceBonus = document.querySelector(".fasceBonus");
+const modalWindow = document.querySelector(".modalWindow");
+
+fetch("https://jsonplaceholder.typicode.com/users")
+  .then((res) => res.json())
+  .then((data) => {
+    const userList = data.map((item) => ({
+      ...item,
+      age: ageGenerator(18, 82),
+    }));
+    return userList;
+  })
+  .then((userList) => {
+    fasceBonus.addEventListener("click", function (event) {
+      if (event.target.closest(".primaFascia")) {
+        modalWindow.style.display = "block";
+        modalWindow.innerHTML = `<span class="closeModal">X</span>
+        <h3>Utenti con età compresa tra i 18 e i 35 anni</h3>`;
+        const primaFascia = userList.filter(
+          (item) => item.age >= 18 && item.age <= 35
+        );
+        if (primaFascia.length > 0) {
+          primaFascia.map((_, index, array) => {
+            modalWindow.innerHTML += `
+        <div>Nome: ${array[index].name}<br> Età: ${array[index].age},<br> Numero di telefono: ${array[index].phone} <br><br></div>
+        `;
+          });
+        } else {
+          modalWindow.innerHTML = `<span class="closeModal">X</span>
+            <h3>Nessun utente rientra in questi requisiti
+            di età</h3>`;
+          console.log("nessun elemento 1");
+        }
+      }
+      if (event.target.closest("span")) {
+        modalWindow.style.display = "none";
+      }
+    });
+
+    return userList;
+  })
+  .then((userList) => {
+    fasceBonus.addEventListener("click", function (event) {
+      if (event.target.closest(".secondaFascia")) {
+        modalWindow.style.display = "block";
+        modalWindow.innerHTML = `<span class="closeModal">X</span>
+        <h3>Utenti con età compresa tra i 36 e i 64 anni</h3>`;
+        const secondaFascia = userList.filter(
+          (item) => item.age >= 36 && item.age <= 64
+        );
+        if (secondaFascia.length > 0) {
+          secondaFascia.map((_, index, array) => {
+            modalWindow.innerHTML += `
+        <div>Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
+        `;
+          });
+        } else {
+          modalWindow.innerHTML = `<span class="closeModal">X</span>
+            <h3>Nessun utente rientra in questi requisiti
+            di età</h3>`;
+          console.log("nessun elemento 2");
+        }
+      }
+      if (event.target.closest("span")) {
+        modalWindow.style.display = "none";
+      }
+    });
+
+    return userList;
+  })
+  .then((userList) => {
+    fasceBonus.addEventListener("click", function (event) {
+      if (event.target.closest(".terzaFascia")) {
+        modalWindow.style.display = "block";
+        modalWindow.innerHTML = `<span class="closeModal">X</span>
+        <h3>Utenti con età oltre i 64 anni</h3>`;
+        const terzaFascia = userList.filter((item) => item.age > 64);
+        if (terzaFascia.length > 0) {
+          terzaFascia.map((item, index, array) => {
+            modalWindow.innerHTML += `
+        <div>Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
+        `;
+          });
+        } else {
+          modalWindow.innerHTML = `<span class="closeModal">X</span>
+            <h3>Nessun utente rientra in questi requisiti
+            di età</h3>`;
+          console.log("nessun elemento 3");
+        }
+      }
+      if (event.target.closest("span")) {
+        modalWindow.style.display = "none";
+      }
+    });
+
+    return userList;
+  });
