@@ -67,3 +67,7 @@ h1 {
   cursor: pointer;
   color: #00c5ca;
 }
+
+.error404 {
+  text-align: center;
+}

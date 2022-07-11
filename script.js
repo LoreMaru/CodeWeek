@@ -4,6 +4,7 @@ function ageGenerator(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
+const mainContent = document.querySelector(".mainContent");
 const fasceBonus = document.querySelector(".fasceBonus");
 const modalWindow = document.querySelector(".modalWindow");
 
@@ -84,4 +85,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
         modalWindow.style.display = "none";
       }
     });
+  })
+  .catch((error) => {
+    mainContent.innerHTML = `<div class="error404"><h1>404</h1><br><h2>Pagina non trovata</h2></div>`;
   });
