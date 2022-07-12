@@ -19,7 +19,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
       const secondaFascia = data.filter(
         (item) => item.age >= 36 && item.age <= 64
       );
-      const terzaFascia = data.filter((item) => item.age > 84);
+      const terzaFascia = data.filter((item) => item.age > 64);
 
       const modalCloser = `<span class="closeModal">X</span>`;
       const modalOpener = (modalWindow.style.display = "block");
