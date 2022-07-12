@@ -10,22 +10,16 @@ const modalWindow = document.querySelector(".modalWindow");
 
 fetch("https://jsonplaceholder.typicode.com/users")
   .then((res) => res.json())
+  .then((data) => data.map((item) => ({ ...item, age: ageGenerator(18, 82) })))
   .then((data) => {
-    const userList = data.map((item) => ({
-      ...item,
-      age: ageGenerator(18, 82),
-    }));
-    return userList;
-  })
-  .then((userList) => {
     fasceBonus.addEventListener("click", function (event) {
-      const primaFascia = userList.filter(
+      const primaFascia = data.filter(
         (item) => item.age >= 18 && item.age <= 35
       );
-      const secondaFascia = userList.filter(
+      const secondaFascia = data.filter(
         (item) => item.age >= 36 && item.age <= 64
       );
-      const terzaFascia = userList.filter((item) => item.age > 64);
+      const terzaFascia = data.filter((item) => item.age > 64);
 
       const noUserFindMSG = `<span class="closeModal">X</span>
       <h3>Nessun utente rientra in questi requisiti

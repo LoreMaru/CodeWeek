@@ -95,6 +95,7 @@ body {
   top: 5px;
   left: 90%;
   font-weight: 700;
+  font-size: 20px;
 }
 
 .closeModal:hover {
