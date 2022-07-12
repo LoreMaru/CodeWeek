@@ -22,7 +22,6 @@ fetch("https://jsonplaceholder.typicode.com/users")
       const terzaFascia = data.filter((item) => item.age > 84);
 
       const modalCloser = `<span class="closeModal">X</span>`;
-
       const modalOpener = (modalWindow.style.display = "block");
 
       const noUserFindMSG = `${modalCloser}
