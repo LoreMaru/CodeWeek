@@ -19,15 +19,15 @@ fetch("https://jsonplaceholder.typicode.com/users")
       const secondaFascia = data.filter(
         (item) => item.age >= 36 && item.age <= 64
       );
-      const terzaFascia = data.filter((item) => item.age > 64);
-
-      const noUserFindMSG = `<span class="closeModal">X</span>
-      <h3>Nessun utente rientra in questi requisiti
-      di età</h3>`;
+      const terzaFascia = data.filter((item) => item.age > 84);
 
       const modalCloser = `<span class="closeModal">X</span>`;
 
       const modalOpener = (modalWindow.style.display = "block");
+
+      const noUserFindMSG = `${modalCloser}
+      <h3>Nessun utente rientra in questi requisiti
+      di età</h3>`;
 
       if (event.target.closest(".primaFascia")) {
         modalOpener;
@@ -75,7 +75,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
         }
       }
 
-      if (event.target.closest("span")) {
+      if (event.target.closest(".closeModal")) {
         modalWindow.style.display = "none";
       }
     });
