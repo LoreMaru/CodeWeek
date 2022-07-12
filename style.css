@@ -25,7 +25,7 @@ body {
   color: #1c2024;
   font-family: "DM Sans", sans-serif;
   background-image: url(./img/backgoundAbstract.png);
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 .mainTitle {
@@ -83,7 +83,7 @@ body {
   position: absolute;
   z-index: 2;
   display: none;
-  overflow: hidden;
+  overflow: scroll;
   box-shadow: rgba(109, 114, 166, 0.35) 0px 5px 15px;
   border-radius: 20px;
 }
