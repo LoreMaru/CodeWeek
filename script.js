@@ -87,5 +87,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
     });
   })
   .catch((error) => {
-    mainContent.innerHTML = `<div class="error404"><h1>404</h1><br><h2>Pagina non trovata</h2></div>`;
+    mainContent.innerHTML = `<div class="error404">
+    <h1>404</h1><br><h2>Pagina non trovata</h2>
+    <img src="./img/404error.png" class="errorIMG"> </div>`;
   });
