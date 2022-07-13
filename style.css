@@ -89,11 +89,13 @@ body {
   z-index: 2;
   display: none;
   overflow: scroll;
+  text-align: center;
   box-shadow: rgba(109, 114, 166, 0.35) 0px 5px 15px;
   border-radius: 20px;
 }
 
-.closeModal {
+.closeModal,
+.userModalCloser {
   background-color: #ffffff;
   position: sticky;
   top: 5px;
@@ -103,9 +105,45 @@ body {
   font-size: 20px;
 }
 
-.closeModal:hover {
+.closeModal:hover,
+.userModalCloser:hover {
   cursor: pointer;
   color: #00c5ca;
+}
+
+.userCard {
+  background-color: #ffffff;
+  padding: 20px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 50px;
+  border: 1px solid #5751ff;
+  box-shadow: rgba(109, 114, 166, 0.35) 0px 5px 15px;
+}
+
+.userCard:hover {
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px,
+    rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px,
+    rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+}
+
+.userCard:active {
+  transform: scale(0.9);
+}
+
+.userModal {
+  background-color: #ffffff;
+  padding: 0px 20px;
+  width: 70vw;
+  height: 70vh;
+  right: 15%;
+  position: absolute;
+  z-index: 2;
+  display: none;
+  overflow: scroll;
+  box-shadow: rgba(109, 114, 166, 0.35) 0px 5px 15px;
+  border-radius: 20px;
 }
 
 .error404 {

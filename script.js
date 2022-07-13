@@ -7,6 +7,7 @@ function ageGenerator(min, max) {
 const mainContent = document.querySelector(".mainContent");
 const fasceBonus = document.querySelector(".fasceBonus");
 const modalWindow = document.querySelector(".modalWindow");
+const userModal = document.querySelector(".userModal");
 
 const currentYear = new Date().getFullYear();
 
@@ -40,6 +41,8 @@ fetch("https://jsonplaceholder.typicode.com/users")
       const modalCloser = `<span class="closeModal">X</span>`;
       const modalOpener = (modalWindow.style.display = "block");
 
+      const userModalCloser = `<span class="userModalCloser">🡸</span>`;
+
       const noUserFindMSG = `${modalCloser}
       <h3>Nessun utente rientra in questi requisiti
       di età</h3>`;
@@ -51,7 +54,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
         if (primaFascia.length > 0) {
           primaFascia.map((item) => {
             modalWindow.innerHTML += `
-        <div>
+        <div class="userCard" id="${item.id}">
         Nome: ${item.name}<br>Data di nascita: ${item.birthDate} <br>Età: ${item.age},<br> Numero di telefono: ${item.phone} <br><br></div>
         `;
           });
@@ -66,7 +69,7 @@ fetch("https://jsonplaceholder.typicode.com/users")
         if (secondaFascia.length > 0) {
           secondaFascia.map((item) => {
             modalWindow.innerHTML += `
-            <div>
+            <div class="userCard" id="${item.id}">
             Nome: ${item.name}<br>Data di nascita: ${item.birthDate} <br>Età: ${item.age},<br> Numero di telefono: ${item.phone} <br><br></div>
             `;
           });
@@ -81,13 +84,28 @@ fetch("https://jsonplaceholder.typicode.com/users")
         if (terzaFascia.length > 0) {
           terzaFascia.map((item) => {
             modalWindow.innerHTML += `
-            <div>
+            <div class="userCard" id="${item.id}">
             Nome: ${item.name}<br>Data di nascita: ${item.birthDate} <br>Età: ${item.age},<br> Numero di telefono: ${item.phone} <br><br></div>
             `;
           });
         } else {
           modalWindow.innerHTML = noUserFindMSG;
         }
+      }
+
+      if (event.target.closest(".userCard")) {
+        userModal.style.display = "block";
+        const userID = event.target.id;
+        const userInfo = JSON.stringify(data[userID - 1])
+          .replaceAll(/({|})/g, " ")
+          .replaceAll(/(?:\r\n|\r|\n|")/g, " ")
+          .replaceAll(",", `<br>`);
+
+        userModal.innerHTML = `${userModalCloser}<br>${userInfo}`;
+      }
+
+      if (event.target.closest(".userModalCloser")) {
+        userModal.style.display = "none";
       }
 
       if (event.target.closest(".closeModal")) {
