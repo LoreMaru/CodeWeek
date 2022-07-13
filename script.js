@@ -10,23 +10,39 @@ const modalWindow = document.querySelector(".modalWindow");
 
 fetch("https://jsonplaceholder.typicode.com/users")
   .then((res) => res.json())
-  .then((data) => data.map((item) => ({ ...item, age: ageGenerator(18, 82) })))
   .then((data) => {
-    fasceBonus.addEventListener("click", function (event) {
-      const primaFascia = data.filter(
-        (item) => item.age >= 18 && item.age <= 35
-      );
-      const secondaFascia = data.filter(
-        (item) => item.age >= 36 && item.age <= 64
-      );
-      const terzaFascia = data.filter((item) => item.age > 64);
+    fasceBonus;
 
+    const userData = data.map((item) => ({
+      ...item,
+
+      birthDate: `${ageGenerator(1, 28)}/${ageGenerator(1, 12)}/${ageGenerator(
+        1940,
+        2004
+      )}`,
+    }));
+    return userData;
+  })
+  .then((userData) => {
+    const userList = userData.map((item) => ({
+      ...item,
+      birthYear: parseInt(item.birthDate.slice(-4)),
+    }));
+    return userList;
+  })
+  .then((userList) => {
+    fasceBonus.addEventListener("click", function (event) {
+      const primaFascia = userList.filter((item) => item.birthYear >= 1987);
+      const secondaFascia = userList.filter(
+        (item) => item.birthYear <= 1986 && item.birthYear >= 1958
+      );
+      const terzaFascia = userList.filter((item) => item.birthYear < 1958);
       const modalCloser = `<span class="closeModal">X</span>`;
       const modalOpener = (modalWindow.style.display = "block");
 
       const noUserFindMSG = `${modalCloser}
-      <h3>Nessun utente rientra in questi requisiti
-      di età</h3>`;
+    <h3>Nessun utente rientra in questi requisiti
+    di età</h3>`;
 
       if (event.target.closest(".primaFascia")) {
         modalOpener;
@@ -35,9 +51,9 @@ fetch("https://jsonplaceholder.typicode.com/users")
         if (primaFascia.length > 0) {
           primaFascia.map((_, index, array) => {
             modalWindow.innerHTML += `
-        <div>
-        Nome: ${array[index].name}<br> Età: ${array[index].age},<br> Numero di telefono: ${array[index].phone} <br><br></div>
-        `;
+      <div>
+      Nome: ${array[index].name}<br> Data di nascita: ${array[index].birthDate},<br> Numero di telefono: ${array[index].phone} <br><br></div>
+      `;
           });
         } else {
           modalWindow.innerHTML = noUserFindMSG;
@@ -50,9 +66,9 @@ fetch("https://jsonplaceholder.typicode.com/users")
         if (secondaFascia.length > 0) {
           secondaFascia.map((_, index, array) => {
             modalWindow.innerHTML += `
-        <div>
-        Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
-        `;
+      <div>
+      Nome: ${array[index].name}<br> Data di nascita: ${array[index].birthDate},<br>Numero di telefono: ${array[index].phone} <br><br></div>
+      `;
           });
         } else {
           modalWindow.innerHTML = noUserFindMSG;
@@ -65,9 +81,9 @@ fetch("https://jsonplaceholder.typicode.com/users")
         if (terzaFascia.length > 0) {
           terzaFascia.map((_, index, array) => {
             modalWindow.innerHTML += `
-            <div>
-            Nome: ${array[index].name}<br> Età: ${array[index].age},<br>Numero di telefono: ${array[index].phone} <br><br></div>
-            `;
+          <div>
+          Nome: ${array[index].name}<br> Data di nascita: ${array[index].birthDate},<br>Numero di telefono: ${array[index].phone} <br><br></div>
+          `;
           });
         } else {
           modalWindow.innerHTML = noUserFindMSG;
@@ -81,6 +97,6 @@ fetch("https://jsonplaceholder.typicode.com/users")
   })
   .catch((error) => {
     mainContent.innerHTML = `<div class="error404">
-    <h1>404</h1><br><h2>Pagina non trovata</h2>
-    <img src="./img/404error.png" class="errorIMG"> </div>`;
+  <h1>404</h1><br><h2>Pagina non trovata</h2>
+  <img src="./img/404error.png" class="errorIMG"> </div>`;
   });
